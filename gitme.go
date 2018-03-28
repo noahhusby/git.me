@@ -11,7 +11,7 @@ func menu() {
 
 	banner.Print("gitme")
 	fmt.Println("")
-	fmt.Println("Version: 1.0")
+	fmt.Println("Version: 1.1")
 	fmt.Println("----------------------------------------")
 	fmt.Println("The following options are availible below:")
 	fmt.Println("(1) Build Gradle Project")
@@ -46,6 +46,7 @@ func runExec(command string, args1 string, args2 string) {
 
 func input() {
 	var input string
+	fmt.Print("$ ")
 	fmt.Scanln(&input)
 
 	switch input {
@@ -61,6 +62,8 @@ func input() {
 			fmt.Println("Warning: Gradle is not found in current directory!")
 		}
 
+		fmt.Println("")
+
 	case "2":
 		c := exec.Command("gradlew", "wrapper")
 		bs,err := c.CombinedOutput();
@@ -70,8 +73,11 @@ func input() {
 		if(false) {
 			fmt.Printf("Error", err)
 		}
+
+		fmt.Println("")
+
 	case "3":
-		c := exec.Command("git", "add .")
+		c := exec.Command("git", "add",".")
 		bs,err := c.CombinedOutput();
 
 		fmt.Printf("%s", bs)
@@ -79,6 +85,8 @@ func input() {
 		if(false) {
 			fmt.Printf("Error", err)
 		}
+		fmt.Println("")
+
 	case "4":
 		fmt.Println("Enter a Commit Message:")
 		var inputCommit string
@@ -93,6 +101,8 @@ func input() {
 		if(false) {
 			fmt.Printf("Error", err)
 		}
+		fmt.Println("")
+
 	case "5":
 		c := exec.Command("git", "push")
 		bs,err := c.CombinedOutput()
@@ -125,8 +135,10 @@ func input() {
 		if(false) {
 			fmt.Printf("Error", errr)
 		}
-	case "7":
+		fmt.Println("")
 
+	case "7":
+		fmt.Println("")
 	case "8":
 		os.Exit(0)
 	case "menu":
