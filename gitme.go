@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os/exec"
 	"github.com/CrowdSurge/banner"
+	"os"
 )
 
 func menu() {
@@ -20,6 +21,7 @@ func menu() {
 	fmt.Println("(5) Push files to git")
 	fmt.Println("(6) Commit and push to git")
 	fmt.Println("(7) More options")
+	fmt.Println("(8) Exit Gitme")
 	fmt.Println("Type 'menu' to return to this menu")
 }
 
@@ -48,14 +50,17 @@ func input() {
 
 	switch input {
 	case "1":
+		fmt.Println("Building Gradle project please wait...")
+
 		c := exec.Command("gradlew", "build")
 		bs,err := c.CombinedOutput();
 
 		fmt.Printf("%s", bs)
 
-		if(false) {
-			fmt.Printf("Error", err)
+		if err != nil {
+			fmt.Println("Warning: Gradle is not found in current directory!")
 		}
+
 	case "2":
 		c := exec.Command("gradlew", "wrapper")
 		bs,err := c.CombinedOutput();
@@ -122,6 +127,8 @@ func input() {
 		}
 	case "7":
 
+	case "8":
+		os.Exit(0)
 	case "menu":
 		menu()
 
